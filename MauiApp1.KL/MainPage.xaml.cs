@@ -1,4 +1,6 @@
-﻿namespace MauiApp1.KL
+﻿
+
+namespace MauiApp1.KL
 {
     public partial class MainPage : ContentPage
     {
@@ -11,17 +13,31 @@
 
         private void OnCounterClicked(object sender, EventArgs e)
         {
-            Random r = new Ramdom();
+            Random r = new Random();
             int diceRoll = r.Next(1, 7);
 
-            CounterBtn.Text = "Wylosowany rzut: " + diceRoll.ToString();
+            if (Dice4RadioButton.IsChecked)
+            {
+                diceRoll = r.Next(1, 5);
+            }
+            else if (Dice6RadioButton.IsChecked)
+            {
+                diceRoll = r.Next(1, 7);
+            }
+            else if (Dice10RadioButton.IsChecked)
+            {
+                diceRoll = r.Next(1, 11);
+            }
+            else if (Dice12RadioButton.IsChecked)
+            {
+                diceRoll = r.Next(1, 13);
+            }
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+                CounterBtn.Text = "Wylosowany rzut: " + diceRoll.ToString();
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+            
+
+            
 
             SemanticScreenReader.Announce(CounterBtn.Text);
         }
